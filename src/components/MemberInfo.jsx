@@ -6,7 +6,7 @@ function MemberInfo ({label, value}) {
         <table className="w-full overflow-hidden ">
           <tbody>
             <tr>
-              <td className="w-[200px]">{label}</td>
+              <td className="w-[200px] font-bold">{label}</td>
               <td className="flex-1">{value}</td>
             </tr>
           </tbody>

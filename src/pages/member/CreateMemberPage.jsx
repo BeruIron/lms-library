@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MemberForm from '../../components/MemberForm';
+import Button from '../../components/MemberButton';
 
 const CreateMemberPage = () => {
   const [fullname, setFullname] = useState("");
@@ -81,16 +82,10 @@ const CreateMemberPage = () => {
         />
         {error && <div className="text-red-500 mb-4">{error}</div>} {/* Display error if present */}
         <div className="flex space-x-4">
-          <button 
-            type="button" 
-            onClick={() => navigate('/member')}
-            className="px-4 py-2 bg-gray-500 text-white rounded"
-          >
-            Cancel
-          </button>
-          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
-            Save
-          </button>
+
+        <Button onClick={() => navigate('/member')} text="Cancel" />
+        <Button text="Save" type="button-blue" />
+
         </div>
       </form>
     </div>

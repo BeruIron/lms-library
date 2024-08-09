@@ -7,3 +7,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+Button.button-blue{
+  background-color: rgba(0, 0, 255, 0.702);
+}
+Button.button-red{
+  background-color: red;
+}
+Button.button-sky{
+  background-color: rgb(10, 151, 206);
+  width: 90px;
+  height:40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+Button.button-create{
+  background-color: rgba(3, 77, 131, 0.807);
+  width: 130px;
+  height: 50px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
