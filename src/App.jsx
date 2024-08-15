@@ -52,7 +52,7 @@ function App() {
         <Route path="/member" element={<MemberPage />} />
         <Route path="/book/:id" element={<View />} />
         <Route path="/book-create" element={<BookForm />} />
-      </Route>
+     
 
 
     </Routes>
