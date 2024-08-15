@@ -82,9 +82,9 @@ function UserAccountListPage() {
 
                 </table>
                 <div className='flex justify-end mt-4'>
-                    <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 rounded   ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} > Prev</button>
+                    <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 rounded   ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} > &larr; Prev</button>
                     <span className='p-4'> {currentPage} </span>
-                    <button onClick={nextPage } disabled={currentPage === totalPage} className={`px-4 py-2 rounded ${currentPage === totalPage ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`}>Next </button>
+                    <button onClick={nextPage } disabled={currentPage === totalPage} className={`px-4 py-2 rounded ${currentPage === totalPage ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`}>Next &rarr;</button>
                 </div>
             </div>
         </div>
