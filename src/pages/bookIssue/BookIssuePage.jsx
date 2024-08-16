@@ -95,7 +95,7 @@ const BookIssuePage = () => {
           <tbody>
             {currentIssues.map((issue) => (
               <tr className="border" key={issue.id}>
-                <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
                   <Link to={`/ViewBookIssue/${issue.id}`}>
                     <button
                       type="button"
