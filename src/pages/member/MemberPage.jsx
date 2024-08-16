@@ -44,13 +44,13 @@ const MemberPage = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">Member</h1>
+      <h1 className="text-4xl font-bold mb-4">Member</h1>
 
       <Button onClick={() => navigate('/member/create')} text="Create" type="button-create" />
 
       <table className="w-full bg-white rounded-2xl overflow-hidden">
         <thead>
-          <tr className="border-2 border-zinc-300 bg-gray-200 text-slate-600">
+          <tr className="border-2 bg-gray-200 text-slate-600">
             <th className="px-4 py-4">Action</th>
             <th className="px-4 py-4">Member Code</th>
             <th className="px-4 py-4">Fullname</th>
@@ -62,7 +62,7 @@ const MemberPage = () => {
         </thead>
         <tbody>
           {currentMembers.map((member, index) => (
-            <tr className="border-2 border-zinc-300 text-slate-500" key={index}>
+            <tr className="border-2  text-slate-500" key={index}>
               <td className="px-4 py-2">
                 <Button onClick={() => navigate(`/detail/${member.id}`)} text="View" type="button-sky" />
               </td>

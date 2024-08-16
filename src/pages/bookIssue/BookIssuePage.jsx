@@ -55,17 +55,17 @@ const BookIssuePage = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold ">Book Issue</h1>
+      <h1 className="text-4xl font-bold ">Book Issue</h1>
       <div className="px-2 py-4">
         <Link to={"/NewBookIssue"}>
           <MyBtn text="Create" type="MyBtn-blue"></MyBtn>
         </Link>
       </div>
 
-      <div className="border rounded-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
+      <div>
+        <table className="w-full bg-white rounded-2xl overflow-hidden">
           <thead>
-            <tr className="divide-x divide-gray-200 dark:divide-neutral-700 bg-neutral-200">
+            <tr className="border-2 bg-gray-200 text-slate-600">
               <th className="px-6 py-4 text-start text-xs font-medium text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Action
               </th>
