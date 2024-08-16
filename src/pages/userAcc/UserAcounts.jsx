@@ -46,13 +46,13 @@ function UserAccountListPage() {
     return (
         <div>
             <div className="container mx-auto p-4 ">
-                <h1 className="text-2xl font-bold mb-4">User Accounts</h1>
+                <h1 className="text-4xl font-bold mb-4">User Accounts</h1>
                 <Link to="new"><Btn text="Create" kind="secondary" type="btn-blue" /></Link>
 
                 <table className='w-full bg-white   border-gray-500 border rounded-2xl overflow-hidden '>
 
                     <thead >
-                        <tr className="w-full bg-gray-300 border-b ">
+                        <tr className="w-full bg-gray-200 border-b ">
                             <th className="py-4 px-4 border-r text-left">Action</th>
                             <th className="py-4 px-4 border-r text-left">ID</th>
                             <th className="py-4 px-4 border-r text-left">Name</th>
@@ -82,9 +82,9 @@ function UserAccountListPage() {
 
                 </table>
                 <div className='flex justify-end mt-4'>
-                    <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 rounded   ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} > &larr; Prev</button>
+                    <button onClick={handlePrev} disabled={currentPage === 1} className={`px-4 py-2 rounded-lg  ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} > &larr; Prev</button>
                     <span className='p-4'> {currentPage} </span>
-                    <button onClick={nextPage } disabled={currentPage === totalPage} className={`px-4 py-2 rounded ${currentPage === totalPage ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`}>Next &rarr;</button>
+                    <button onClick={nextPage } disabled={currentPage === totalPage} className={`px-4 py-2 rounded-lg ${currentPage === totalPage ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`}>Next &rarr;</button>
                 </div>
             </div>
         </div>
