@@ -1,13 +1,14 @@
+
 import React, { useState, useEffect } from "react";
 import { fetchMember } from "../../api/member";
-// import { Link } from "react-router-dom";
 import Button from "../../components/MemberButton";
 import { useNavigate } from "react-router-dom";
 
 const MemberPage = () => {
   const [members, setMember] = useState([]);
-  const navigate = useNavigate ();
- 
+  const [currentPage, setCurrentPage] = useState(1);
+  const membersPerPage = 10; // Number of members to display per page
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getMember = async () => {
@@ -18,20 +19,38 @@ const MemberPage = () => {
     getMember();
   }, []);
 
+  // Calculate total pages
+  const totalPages = Math.ceil(members.length / membersPerPage);
+
+  // Slice the data for the current page
+  const currentMembers = members.slice(
+    (currentPage - 1) * membersPerPage,
+    currentPage * membersPerPage
+  );
+
+  // Handle next page
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  // Handle previous page
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">Member</h1>
 
-      {/* <Link to="/member/create">
-        <button className="text-xl py-2 px-7 bg-sky-500/100 text-white rounded-lg shadow-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75 mb-5">
-          Create
-        </button>
-      </Link> */}
       <Button onClick={() => navigate('/member/create')} text="Create" type="button-create" />
 
-      <table className="w-full bg-white   rounded-2xl overflow-hidden">
+      <table className="w-full bg-white rounded-2xl overflow-hidden">
         <thead>
-          <tr className="border-2 border-zinc-300  bg-gray-200 text-slate-600">
+          <tr className="border-2 border-zinc-300 bg-gray-200 text-slate-600">
             <th className="px-4 py-4">Action</th>
             <th className="px-4 py-4">Member Code</th>
             <th className="px-4 py-4">Fullname</th>
@@ -42,16 +61,10 @@ const MemberPage = () => {
           </tr>
         </thead>
         <tbody>
-          {members.map((member, index) => (
+          {currentMembers.map((member, index) => (
             <tr className="border-2 border-zinc-300 text-slate-500" key={index}>
               <td className="px-4 py-2">
-                {/* <Link to={`/detail/${member.id}`}> */}
-                   {/* <button class="py-1 px-7 bg-sky-500/100 text-white rounded-lg shadow-md hover:bg-sky-600 focus:ring focus:ring-violet-400 focus:ring-opacity-75 mb-5">
-                    view
-                  </button> */}
-                {/* </Link> */}
-                <Button onClick={() => navigate (`/detail/${member.id}`)} text="view" type="button-sky"/>
-
+                <Button onClick={() => navigate(`/detail/${member.id}`)} text="View" type="button-sky" />
               </td>
               <td className="px-4 py-2">{member.member_code}</td>
               <td className="px-4 py-2">{member.fullname}</td>
@@ -63,9 +76,29 @@ const MemberPage = () => {
           ))}
         </tbody>
       </table>
-     
+
+      <div className="flex justify-end items-center mt-4">
+        <button
+          onClick={prevPage}
+          disabled={currentPage === 1}
+          className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg disabled:opacity-50"
+        >
+          &larr; Prev
+        </button>
+        <span className="px-4 py-2">
+           {totalPages}
+        </span>
+        <button
+          onClick={nextPage}
+          disabled={currentPage === totalPages}
+          className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg disabled:opacity-50"
+        >
+          Next &rarr;
+        </button>
+      </div>
     </>
   );
 };
 
 export default MemberPage;
+
