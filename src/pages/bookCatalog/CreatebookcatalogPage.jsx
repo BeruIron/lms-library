@@ -25,7 +25,7 @@ const BookForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/api/books', {
+            const response = await axios.post('https://wmad-library-backend-six.vercel.app/api/books', {
                 title,
                 authors,
                 isbn,

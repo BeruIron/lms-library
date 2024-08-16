@@ -7,7 +7,7 @@
 export const fetchMember = async () => {
     try {
         console.log('Fetching member...');
-        const response = await fetch('http://localhost:3000/api/members', {
+        const response = await fetch('https://wmad-library-backend-six.vercel.app/api/members', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

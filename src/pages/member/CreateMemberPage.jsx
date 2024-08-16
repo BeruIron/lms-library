@@ -18,7 +18,7 @@ const CreateMemberPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/members', {
+      const response = await axios.post('https://wmad-library-backend-six.vercel.app/api/members', {
         fullname,
         email,
         date_of_birth: birthday,

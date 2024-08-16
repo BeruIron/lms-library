@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 export const fetchBooks = async () => {
   try {
     console.log('Fetching books...');
-    const response = await fetch('http://localhost:3000/api/books', {
+    const response = await fetch('https://wmad-library-backend-six.vercel.app/api/books', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,

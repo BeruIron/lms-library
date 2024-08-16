@@ -15,7 +15,7 @@ const MemberInformationPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/members/${id}`,
+          `https://wmad-library-backend-six.vercel.app/api/members/${id}`,
           {
             headers: {
               "Content-Type": "application/json;charset=utf-8",
@@ -36,7 +36,7 @@ const MemberInformationPage = () => {
     const userConfirmed = window.confirm("Would you like to delete?");
     if (userConfirmed) {
       try {
-        await axios.delete(`http://localhost:3000/api/members/${id}`, {
+        await axios.delete(`https://wmad-library-backend-six.vercel.app/api/members/${id}`, {
           headers: {
             "Content-Type": "application/json;charset=utf-8",
             Authorization: `Bearer ${token}`,

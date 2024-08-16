@@ -15,7 +15,7 @@ const BookIssuePage = () => {
   useEffect(() => {
     const fetchBookIssues = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/book_issues", {
+        const response = await fetch("https://wmad-library-backend-six.vercel.app/api/book_issues", {
           headers: {
             "Content-Type": "application/json;charset=utf-8",
             Authorization: `Bearer ${token}`,
@@ -105,7 +105,7 @@ const BookIssuePage = () => {
                     </button>
                   </Link>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 text-base">
+                <td className="px-6 py-4  text-sm font-medium text-gray-800 dark:text-neutral-200 text-base">
                   {issue.book.title}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-base">

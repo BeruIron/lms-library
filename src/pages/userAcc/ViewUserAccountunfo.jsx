@@ -14,7 +14,7 @@ const ViewUserAccountinfo = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/user_accounts/${id}`, {
+                const response = await axios.get(`https://wmad-library-backend-six.vercel.app/api/user_accounts/${id}`, {
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8',
                         Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ const ViewUserAccountinfo = () => {
         const userConfirmed = window.confirm("Would you like to delete?");
         if (userConfirmed) {
             try {
-                await axios.delete(`http://localhost:3000/api/user_accounts/${id}`, {
+                await axios.delete(`https://wmad-library-backend-six.vercel.app/api/user_accounts/${id}`, {
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8',
                         Authorization: `Bearer ${token}`,

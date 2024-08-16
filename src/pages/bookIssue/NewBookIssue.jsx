@@ -15,7 +15,7 @@ const BookIssueForm = () => {
     e.preventDefault();
 
     try {
-      const bookResponse = await fetch(`http://localhost:3000/api/books/isbn/${isbn}`, {
+      const bookResponse = await fetch(`https://wmad-library-backend-six.vercel.app/api/books/isbn/${isbn}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -24,7 +24,7 @@ const BookIssueForm = () => {
       const bookData = await bookResponse.json();
       const bookId = bookData?.id;
 
-      const memberResponse = await fetch(`http://localhost:3000/api/members/code/${memberCode}`, {
+      const memberResponse = await fetch(`https://wmad-library-backend-six.vercel.app/api/members/code/${memberCode}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const BookIssueForm = () => {
         processed_by_id: user.id, //? localstorage
       }
 
-      const response = await fetch('http://localhost:3000/api/book_issues', {
+      const response = await fetch('https://wmad-library-backend-six.vercel.app/api/book_issues', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const LoginPage = () => {
     setLoading(true);
     setError("");
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post("https://wmad-library-backend-six.vercel.app/auth/login", {
         email: username,
         password,
       });

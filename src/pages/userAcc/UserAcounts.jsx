@@ -15,7 +15,7 @@ function UserAccountListPage() {
                 return;
             }
             try {
-                const response = await axios.get('http://localhost:3000/api/user_accounts', {
+                const response = await axios.get('https://wmad-library-backend-six.vercel.app/api/user_accounts', {
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8',
                         Authorization: `Bearer ${token}`,

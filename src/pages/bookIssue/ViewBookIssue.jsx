@@ -16,7 +16,7 @@ const ViewBookIssue = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/book_issues/${id}`,
+          `https://wmad-library-backend-six.vercel.app/api/book_issues/${id}`,
           {
             headers: {
               "Content-Type": "application/json;charset=utf-8",
@@ -36,7 +36,7 @@ const ViewBookIssue = () => {
     const userConfirmed = window.confirm("Would you like to delete?");
     if (userConfirmed) {
       try {
-        await axios.delete(`http://localhost:3000/api/book_issues/${id}`, {
+        await axios.delete(`https://wmad-library-backend-six.vercel.app/api/book_issues/${id}`, {
           headers: {
             "Content-Type": "application/json;charset=utf-8",
             Authorization: `Bearer ${token}`,

@@ -18,7 +18,7 @@ const NewUserAccountForm = () => {
         setError(null);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/user_accounts', {
+            const response = await axios.post('https://wmad-library-backend-six.vercel.app/api/user_accounts', {
                 email,
                 username,
                 password,
