@@ -46,7 +46,7 @@ const BookTable = () => {
     <div className='container mx-auto p-4'>
       <h1 className='text-4xl font-bold mb-6'>Book Catalog</h1>
       <Link to="/book-create">
-        <button className="bg-blue-500 text-white px-8 py-3 mb-4 rounded-lg hover:bg-gray-600 cursor-pointer">
+        <button className="px-8 py-2 text-white bg-blue-600 my-3 rounded hover:bg-gray-600 cursor-pointer">
           Create
         </button>
       </Link>

@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
 import MyBtn from "../../components/CreateButton";
 import { Link } from "react-router-dom";
 
@@ -8,6 +7,7 @@ import { Link } from "react-router-dom";
 const BookIssuePage = () => {
   const [bookIssue, setbookIssue] = useState([]);
   const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchFarmers = async () => {
       try {
@@ -97,7 +97,7 @@ const BookIssuePage = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                     <button
                       type="button"
-                      className=" px-2 py-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-800 hover:text-sky-50 focus:outline-none focus:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400 text-base bg-sky-400"
+                      className=" px-8 py-2 bg-blue-400 text-white rounded"
                     >
                       Views
                     </button>
@@ -131,6 +131,7 @@ const BookIssuePage = () => {
           </tbody>
         </div>
       </table>
+      
     </>
   );
 };
