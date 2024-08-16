@@ -1,15 +1,19 @@
-import React from "react";
-import { useState, useEffect } from "react";
+
+
+
+
+import React, { useState, useEffect } from "react";
 import MyBtn from "../../components/CreateButton";
 import { Link } from "react-router-dom";
 
-
 const BookIssuePage = () => {
-  const [bookIssue, setbookIssue] = useState([]);
+  const [bookIssue, setBookIssue] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const issuesPerPage = 10; // Number of issues to display per page
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const fetchFarmers = async () => {
+    const fetchBookIssues = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/book_issues", {
           headers: {
@@ -18,14 +22,36 @@ const BookIssuePage = () => {
           },
         });
         const data = await response.json();
-        setbookIssue(data);
-        return response.data;
+        setBookIssue(data);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchFarmers();
-  }, []);
+    fetchBookIssues();
+  }, [token]);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(bookIssue.length / issuesPerPage);
+
+  // Slice the data for the current page
+  const currentIssues = bookIssue.slice(
+    (currentPage - 1) * issuesPerPage,
+    currentPage * issuesPerPage
+  );
+
+  // Handle next page
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  // Handle previous page
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
 
   return (
     <>
@@ -36,104 +62,98 @@ const BookIssuePage = () => {
         </Link>
       </div>
 
-      <table>
-        <div className="border rounded-lg overflow-hidden">
+      <div className="border rounded-lg overflow-hidden">
+        <table className="min-w-full divide-y divide-gray-200">
           <thead>
-            <tr class="divide-x divide-gray-200 dark:divide-neutral-700 bg-neutral-200">
-              <th
-                scope="col"
-                className="px-6 py-4 text-start text-xs font-medium text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+            <tr className="divide-x divide-gray-200 dark:divide-neutral-700 bg-neutral-200">
+              <th className="px-6 py-4 text-start text-xs font-medium text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Action
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-start text-xs text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+              <th className="px-6 py-4 text-start text-xs text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Title
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-start text-xs text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+              <th className="px-6 py-4 text-start text-xs text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Member
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-start text-xs text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+              <th className="px-6 py-4 text-start text-xs text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Librarian
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+              <th className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Issue Date
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+              <th className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Due Date
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+              <th className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Return Date
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base"
-              >
+              <th className="px-6 py-4 text-end text-xs text-stone-950 uppercase dark:text-neutral-500 text-base">
                 Status
               </th>
             </tr>
           </thead>
           <tbody>
-            {bookIssue.map((Issue) => (
-              <tr className="border" key={Issue.id}>
-                <Link to={`/ViewBookIssue/${Issue.id}`}>
-                  <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+            {currentIssues.map((issue) => (
+              <tr className="border" key={issue.id}>
+                <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+                  <Link to={`/ViewBookIssue/${issue.id}`}>
                     <button
                       type="button"
-                      className=" px-8 py-2 bg-blue-400 text-white rounded"
+                      className="px-8 py-2 bg-blue-400 text-white rounded"
                     >
-                      Views
+                      View
                     </button>
-                  </td>
-                </Link>
+                  </Link>
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 text-base">
-                  {Issue.book.title}
+                  {issue.book.title}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-base">
-                  {Issue.member.fullname}
+                  {issue.member.fullname}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-base">
-                  {Issue.processed_by.username}
+                  {issue.processed_by.username}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-base">
-                  {Issue.issue_date}
+                  {issue.issue_date}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-base">
-                  {Issue.due_date}
+                  {issue.due_date}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-base">
-                  {Issue.return_date}
+                  {issue.return_date}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-base">
-                  {Issue.status.name}
+                  {issue.status.name}
                 </td>
               </tr>
-
-              
             ))}
           </tbody>
-        </div>
-      </table>
-      
+        </table>
+      </div>
+
+      <div className="flex justify-end items-center mt-4">
+        <button
+          onClick={prevPage}
+          disabled={currentPage === 1}
+          className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg disabled:opacity-50"
+        >
+          &larr; Prev
+        </button>
+        <span className="px-4 py-2">
+           {totalPages}
+        </span>
+        <button
+          onClick={nextPage}
+          disabled={currentPage === totalPages}
+          className="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg disabled:opacity-50"
+        >
+          Next &rarr;
+        </button>
+      </div>
     </>
   );
 };
 
 export default BookIssuePage;
+
